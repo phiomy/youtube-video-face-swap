@@ -81,7 +81,11 @@ def download_video(url, start=0, stop=0):
     # clip file after downlaod
     yt.register_on_complete_callback(on_downloaded)
     # get first "mp4" stream as explained here: https://github.com/nficano/pytube
-    yt.streams.filter(subtype='mp4').first().download()
+    try:
+        yt.streams.filter(subtype='mp4').first().download()
+    except ProcessLookupError:
+        pass  # process already terminated
+
 
 if __name__ == "__main__":
     # parse command line options

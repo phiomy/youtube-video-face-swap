@@ -146,7 +146,11 @@ def download_video(url, start=0, stop=0):
     # download youtube video from url
     yt = YouTube(url)
     yt.register_on_complete_callback(on_downloaded)
-    yt.streams.filter(subtype='mp4').first().download()
+    try:
+        yt.streams.filter(subtype='mp4').first().download()
+    except ProcessLookupError:
+        pass  # fixind moviepy bug https://github.com/Zulko/moviepy/pull/864/
+
 
 if __name__ == "__main__":
     # parse command line options
