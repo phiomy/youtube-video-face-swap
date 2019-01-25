@@ -123,7 +123,10 @@ def process_video(in_filename, out_filename, keep_audio=True, down_scale=2):
 
 def video_to_gif(in_filename, out_filename):
     # load clip in moviepy and save as gif
-    clip = VideoFileClip(in_filename)
+    try:
+        clip = VideoFileClip(in_filename)
+    except ProcessLookupError:
+        pass
     clip.write_gif(out_filename)
     
 def download_video(url, start=0, stop=0):     
