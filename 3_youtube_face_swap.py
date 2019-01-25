@@ -168,8 +168,11 @@ if __name__ == "__main__":
     print("Download video with url: {}".format(args.url))
     download_video(args.url, start=args.start, stop=args.stop)
     
-    print("Process video")    
-    process_video("./temp/src_video.mp4", "output.mp4")
+    print("Process video")
+    try:
+        process_video("./temp/src_video.mp4", "output.mp4")
+    except ProcessLookupError:
+        pass
     print("Stored generated video as: output.mp4")
     
     if args.gif:
