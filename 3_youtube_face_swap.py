@@ -178,10 +178,6 @@ if __name__ == "__main__":
         pass
     print("Stored generated video as: output.mp4")
     
-    if args.gif:
-        # you want a gif, you get a gif
-        video_to_gif("output.mp4", "output.gif")
-        print("Stored generated gif as: output.gif")
-        
+ 
     print("Finished, have fun :D")
     
