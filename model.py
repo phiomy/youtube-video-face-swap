@@ -13,12 +13,14 @@ optimizer = Adam( lr=5e-5, beta_1=0.5, beta_2=0.999 )
 IMAGE_SHAPE = (64,64,3)
 ENCODER_DIM = 1024
 
+
 def conv( filters ):
     def block(x):
         x = Conv2D( filters, kernel_size=5, strides=2, padding='same' )(x)
         x = LeakyReLU(0.1)(x)
         return x
     return block
+
 
 def upscale( filters ):
     def block(x):
@@ -27,6 +29,7 @@ def upscale( filters ):
         x = PixelShuffler()(x)
         return x
     return block
+
 
 def Encoder():
     input_ = Input( shape=IMAGE_SHAPE )
